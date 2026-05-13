@@ -36,6 +36,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         {children}
         <ScrollRestoration />
         <Scripts />
+        <footer className="p-4 text-center text-sm text-gray-500">
+          &copy; {new Date().getFullYear()} 2viec.com. All rights reserved.
+        </footer>
       </body>
     </html>
   );
