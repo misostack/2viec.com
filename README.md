@@ -1,87 +1,47 @@
-# Welcome to React Router!
+# 2Viec Landing
 
-A modern, production-ready template for building full-stack React applications using React Router.
+## Deploy to GitHub Pages
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+This project is configured for static SPA deployment on GitHub Pages.
 
-## Features
+#### 1. Deploy
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
-
-## Getting Started
-
-### Installation
-
-Install the dependencies:
+Run the following command to build and publish to the `gh-pages` branch:
 
 ```bash
-npm install
+npm run deploy
 ```
 
-### Development
+This will:
 
-Start the development server with HMR:
+- Build the project in SPA mode (`ssr: false`)
+- Copy `index.html` to `404.html` (for client-side routing)
+- Push the `build/client/` output to the `gh-pages` branch via `gh-pages`
 
-```bash
-npm run dev
-```
+#### 2. Configure GitHub Pages Settings
 
-Your application will be available at `http://localhost:5173`.
+1. Go to your GitHub repo **Settings → Pages**
+2. Under **Source**, select **Deploy from a branch**
+3. Set branch to `gh-pages` and folder to `/ (root)`
+4. Click **Save**
 
-## Building for Production
+#### 3. Configure Custom Domain (optional)
 
-Create a production build:
+To use a custom domain (e.g. `2viec.com`):
 
-```bash
-npm run build
-```
+**DNS records** — Add the following in your domain registrar's DNS settings:
 
-## Deployment
+| Type  | Name | Value                  |
+| ----- | ---- | ---------------------- |
+| A     | @    | `185.199.108.153`      |
+| A     | @    | `185.199.109.153`      |
+| A     | @    | `185.199.110.153`      |
+| A     | @    | `185.199.111.153`      |
+| CNAME | www  | `<username>.github.io` |
 
-### Docker Deployment
+**GitHub settings:**
 
-To build and run using Docker:
+1. In **Settings → Pages**, enter your custom domain (e.g. `2viec.com`) and click **Save**
+2. Enable **Enforce HTTPS** once DNS verification passes
 
-```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
-```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
-
----
-
-Built with ❤️ using React Router.
+**CNAME file** — Make sure [public/CNAME](public/CNAME) contains your domain. This is automatically included in the build output.
